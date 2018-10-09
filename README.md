@@ -1,15 +1,19 @@
-WaziApp examples
+zen-mover
 ================
+This is a demo for the zen-mover logistics application for tracking & monitoring delicate goods using the Waziup platform
 
-This folder contains several examples of Waziup applications.   
+Run the demo on github pages: https://shayoisaack.github.io/zen-mover/webapp/
+
+This folder also contains several examples of Waziup applications.   
 The examples are running in Github pages: https://waziup.github.io/WaziApps-examples/   
 Full tutorial: http://www.waziup.io/tutorials/software/browserapp/   
 
 Usage
 -----
 
-1. Fork this repo on Github
-2. Activate Github pages: Settings -> GitHub Pages -> select "Master source" and save.
+1. Clone the repo on your desktop
+2. cd into zen-mover folder
+3. Run static server (eg. on linux run python -m SimpleHTTPServer)
+4. View demo in browser at localhost:PORT/www/webapp
 
-Your WaziApp is now published! You can see your app at the link given.
-You can then modify your WaziApp directly in github, it will be publish after a few seconds.
+Feel free to fork/clone and contribute.
