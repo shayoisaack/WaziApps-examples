@@ -51,11 +51,11 @@ body{
     left: 30px;
     width: 80%;
     margin: auto;
-    height: 200px;
+    height: 160px;
 }
 
 #dashboard-box{
-    bottom: 200px;
+    bottom: 160px;
     width: 100%;
     height: 0;
 }
@@ -121,4 +121,41 @@ a{
     height: 24px;
     margin: 4px;
     border-radius: 50%;
+}
+
+.dashboard{
+    padding: 20px 60px 0 60px;
+}
+
+.dashboard-item{
+    /* border: 1px solid grey; */
+}
+
+.dashboard-item-category{
+    color: rgba(0,0,0,0.5);
+}
+
+.dashboard-item-title{
+    color: black;
+    font-weight: bold;
+}
+
+.dashboard-item-img{
+    width: 20px;
+    height: 20px;
+}
+.dashboard-item-detail{
+    line-height: 20px;
+}
+
+.dashboard-item-detail-content{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.dashboard-chart{
+    min-height: 200px;
+    border: 1px solid grey;
+    margin-top: 8px;
+    padding: 4px 8px;
 }
