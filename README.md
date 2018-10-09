@@ -2,7 +2,7 @@ zen-mover
 ================
 This is a demo for the zen-mover logistics application for tracking & monitoring delicate goods using the Waziup platform
 
-Run the demo on github pages: https://shayoisaack.github.io/zen-mover/webapp/
+Run the demo on github pages: https://shayoisaack.github.io/zen-mover/www/webapp/
 
 This folder also contains several examples of Waziup applications.   
 The examples are running in Github pages: https://waziup.github.io/WaziApps-examples/   
