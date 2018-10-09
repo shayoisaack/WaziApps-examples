@@ -1,6 +1,7 @@
 *, body{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -60,11 +61,12 @@ body{
 }
 
 #user{
-    width: 150px;
+    width: 86px;
     height: 50px;
     background: white;
     right: 20px;
     top: 20px;
+    padding: 8px;
 }
 
 .no-radius{
@@ -100,4 +102,23 @@ a{
 .sidebar-item img{
     width: 30px;
     margin: 4px 0;
+}
+
+.user-avatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    float: right;
+}
+
+.user-text{
+    line-height: 32px;
+    color: grey;
+}
+
+.user-notification{
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    border-radius: 50%;
 }
