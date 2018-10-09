@@ -7,9 +7,17 @@
     </head>
     <body>
         <div id="header"></div>
-        <div id="navigation"></div>
-      <div id="mapid" style="height:600px"></div>
-      <div id="dashboard"></div>
+        <div id="navigation" class="floating ui no-radius">
+          <div class="sidebar-item">
+            <div>ZEN</div>
+          </div>
+        </div>
+      <div id="mapid" style="height:100vh;"></div>
+      <div id="dashboard-box" class="floating">
+      <div id="dashboard" class="ui"></div>
+      </div>
+      <div id="user" class="floating ui"></div>
+      </div>
       <script src="https://cdn.jsdelivr.net/npm/waziup-js@0.0.18/lib/Waziup.js"></script>
       <script>
           var mymap = L.map('mapid').setView([-1.97, 30.1], 3);
