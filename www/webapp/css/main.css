@@ -215,6 +215,7 @@ a{
     margin-top: -14px;
     padding-right: 15px;
     padding-top: 4px;
+    cursor: pointer;
 }
 
 .dashboard-expand .minimize{
