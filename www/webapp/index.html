@@ -4,7 +4,7 @@
       <link rel="stylesheet" href="css/bootstrap.css" />
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
       <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-      <link rel="stylesheet" href="css/main.css?a=45369"/>
+      <link rel="stylesheet" href="css/main.css?a=4536449f"/>
     </head>
     <body>
         <div id="header"></div>
@@ -38,7 +38,14 @@
       <div id="mapid" style="height:100vh;"></div>
       <div id="dashboard-box" class="floating">
         <div id="dashboard" class="ui dashboard">
-          <div class="row">
+          <div class="dashboard-header">
+              <h5 class="dashboard-item-category dashboard-header-item">DASHBOARD</h5>
+              <div class="user dashboard-header-item">
+                <img class="user-notification" src="images/icons8-bell-32.png"/>
+                <img class="user-avatar" src="images/icons8-administrator-male-80.png"/>
+              </div>
+          </div>
+          <div class="row dashboard-row">
             <div class="col-md-4 col-6 dashboard-item">
               <div class="dashboard-item-category">Cargo</div>
               <div class="dashboard-item-title">In Transit</div>
@@ -109,7 +116,7 @@
                 </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row dashboard-row">
             <div class="col-md-6">
               <div class="dashboard-chart">
                 <div class="dashboard-item-category">Humidity Plot</div>
@@ -120,10 +127,19 @@
                   <div class="dashboard-item-category">Temperature Plot</div>
                 </div>
             </div>
+            <div class="col-md-6">
+              <div class="dashboard-chart">
+                  <div class="dashboard-item-category">Gyroscope Plot</div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div id="dashboard-full">
+          <div class="dashboard-full">
           </div>
         </div>
       </div>
-      <div id="user" class="floating ui">
+      <div id="user" class="user floating ui">
         <img class="user-notification" src="images/icons8-bell-32.png"/>
         <img class="user-avatar" src="images/icons8-administrator-male-80.png"/>
       </div>

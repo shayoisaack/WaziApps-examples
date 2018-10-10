@@ -44,7 +44,7 @@ body{
     border-radius: 4px;
 }
 
-#dashboard{
+.dashboard{
     background: white;
     position: relative;
     bottom: 0;
@@ -52,6 +52,13 @@ body{
     width: 80%;
     margin: auto;
     height: 160px;
+    padding-top: 22px;
+}
+
+.dashboard-row{
+    max-width: 800px;
+    padding: 0 12px;
+    margin: auto;
 }
 
 #dashboard-box{
@@ -60,13 +67,38 @@ body{
     height: 0;
 }
 
-#user{
+.dashboard-box-full{
+    top: 0;
+    bottom: 0;
+    padding-left: 60px;
+}
+
+.dashboard-box-full .dashboard-row{
+    max-width: 100%;
+    padding: 12px 0 0 0;
+}
+
+.dashboard-box-full .dashboard{
+    position: relative;
+    left: 0;
+    height: 300px;
+    background: white;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0px 12px;
+}
+
+.user{
     width: 86px;
     height: 50px;
     background: white;
     right: 20px;
     top: 20px;
     padding: 8px;
+}
+
+#user{
+    display: block;
 }
 
 .no-radius{
@@ -123,10 +155,6 @@ a{
     border-radius: 50%;
 }
 
-.dashboard{
-    padding: 20px 60px 0 60px;
-}
-
 .dashboard-item{
     /* border: 1px solid grey; */
 }
@@ -158,4 +186,23 @@ a{
     border: 1px solid grey;
     margin-top: 8px;
     padding: 4px 8px;
+}
+
+.dashboard-header{
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    height: 51px;
+    display: none;
+}
+
+.dashboard-box-full .dashboard-header{
+    display: block;
+}
+
+.dashboard-header-item{
+    line-height: 50px;
+    display: inline-block;
+}
+
+.dashboard-header .user{
+    float: right;
 }
