@@ -206,3 +206,12 @@ a{
 .dashboard-header .user{
     float: right;
 }
+
+.dashboard-expand{
+    color: rgba(0, 0, 255, 0.7);
+    font-size: 0.8em;
+    width: 100%;
+    text-align: right;
+    margin-top: -14px;
+    padding-right: 15px;
+}
