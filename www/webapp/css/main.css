@@ -119,8 +119,8 @@ a{
     margin: 0 15px 0 15px;
 }
 
-.sidebar-item:hover{
-    background: rgba(255, 165, 0, 0.1);
+.sidebar-item:hover, .sidebar-item-selected{
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-item div{
@@ -214,4 +214,17 @@ a{
     text-align: right;
     margin-top: -14px;
     padding-right: 15px;
+    padding-top: 4px;
+}
+
+.dashboard-expand .minimize{
+    display: none;
+}
+
+.dashboard-minimize .expand{
+    display: none;
+}
+
+.dashboard-minimize .minimize{
+    display: inline;
 }
