@@ -60,7 +60,7 @@
               <div class="dashboard-item-details">
                   <div class="dashboard-item-detail">
                     <img class="dashboard-item-img" src="images/icons8-push-pin-50.png"/>
-                    <span class="dashboard-item-detail-content">At <span id="current-location">Tanga</span></span>
+                    <span class="dashboard-item-detail-content">In <span id="current-location">Tanga</span></span>
                   </div>
                   <div class="dashboard-item-detail">
                     <img class="dashboard-item-img" src="images/icons8-time-50.png"/>
@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-4 col-6 dashboard-item">
                 <div class="dashboard-item-category">Driver</div>
-                <div class="dashboard-item-title">John Doe</div>
+                <div class="dashboard-item-title">Isaack Shayo</div>
                 <div class="dashboard-item-details">
                   <div class="dashboard-item-detail">
                     <img class="dashboard-item-img" src="images/icons8-time-50.png"/>
@@ -191,14 +191,14 @@
 
           var geocodeService = L.esri.Geocoding.geocodeService();
           geocodeService.reverse().latlng(latlangs[0]).run(function(error, result) {
-            $('#from').html(result.address.Match_addr); 
+            $('#from').html(formatAddr(result.address.Match_addr)); 
           });
           geocodeService.reverse().latlng(latlangs[latlangs.length-1]).run(function(error, result) {
-            $('#to').html(result.address.Match_addr); 
+            $('#to').html(formatAddr(result.address.Match_addr)); 
           });
 
           //zoom into area
-          mymap.fitBounds(featureGroup.getBounds(), { padding: [20, 20] });
+          mymap.fitBounds(featureGroup.getBounds(), { padding: [80, 80] });
 
           //draw path
           var color = 'blue';
@@ -207,11 +207,16 @@
               color = 'grey';
               L.marker(latlangs[i]).addTo(mymap).bindPopup("Isaack").openPopup();
               geocodeService.reverse().latlng(latlangs[i]).run(function(error, result) {
-                $('#current-location').html(result.address.Match_addr); 
+                $('#current-location').html(formatAddr(result.address.Match_addr)); 
               });
             }
             var polyline = L.polyline([latlangs[i], latlangs[i+1]], {color: color}).addTo(mymap);
           }
+        }
+
+        function formatAddr(addr){
+          let addArr = addr.split(',');
+          return addArr[addArr.length-1];
         }
         
         mockTrack();
