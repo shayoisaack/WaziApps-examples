@@ -40,101 +40,39 @@
             </a>
           </div>
         </div>
-      <div id="mapid" style="height:100vh;"></div>
       <div id="dashboard-box" class="floating dashboard-box-full">
-        <div id="dashboard" class="ui dashboard">
+        <div id="dashboard" class="ui dashboard" style="overflow: scroll;">
           <div class="dashboard-header">
-              <h5 class="dashboard-item-category dashboard-header-item">DASHBOARD</h5>
+              <h5 class="dashboard-item-category dashboard-header-item">HISTORY</h5>
               <div class="user dashboard-header-item">
                 <img class="user-notification" src="images/icons8-bell-32.png"/>
                 <img class="user-avatar" src="images/icons8-administrator-male-80.png"/>
               </div>
           </div>
           <div class="row dashboard-row">
-            <div class="col-md-4 col-6 dashboard-item">
-              <div class="dashboard-item-category">Cargo</div>
-              <div class="dashboard-item-title">In Transit</div>
-              <div class="dashboard-item-details">
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-time-50.png"/>
-                    <span class="dashboard-item-detail-content">2 hours to destination</span>
-                  </div>
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-marker-50.png"/>
-                    <span class="dashboard-item-detail-content">From Moshi</span>
-                  </div>
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-marker-filled-50.png"/>
-                    <span class="dashboard-item-detail-content">To Morogoro</span>
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-4 col-6 dashboard-item">
-                <div class="dashboard-item-category">Driver</div>
-                <div class="dashboard-item-title">John Doe</div>
-                <div class="dashboard-item-details">
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-time-50.png"/>
-                    <span class="dashboard-item-detail-content">Assigned 4 days ago</span>
-                  </div>
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-rating-50.png"/>
-                    <span class="dashboard-item-detail-content">4.5</span>
-                  </div>
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-container-truck-24.png"/>
-                    <span class="dashboard-item-detail-content">23 Trips</span>
-                  </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-6 dashboard-item">
-                <div class="dashboard-item-category">Sensors</div>
-                <div class="dashboard-item-title">All Good</div>
-                <div class="dashboard-item-details">
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-temperature-50.png"/>
-                    <span class="dashboard-item-detail-content">
-                      <span class="sensor">
-                        <span class="sensor-type">Temp</span>
-                        <span class="sensor-value">26 C</span>
-                      </span>
-                    </span>
-                  </div>
-                  <div class="dashboard-item-detail">
-                    <img class="dashboard-item-img" src="images/icons8-humidity-32.png"/>
-                    <span class="dashboard-item-detail-content">
-                      <span class="sensor">
-                        <span class="sensor-type">Humidity</span>
-                        <span class="sensor-value">56</span>
-                      </span>
-                    </span>
-                  </div>
-                  <div class="dashboard-item-detail">
-                      <img class="dashboard-item-img" src="images/icons8-gyroscope-50.png"/>
-                      <span class="dashboard-item-detail-content">
-                        <span class="sensor">
-                          <span class="sensor-type">Vibration</span>
-                          <span class="sensor-value">0.2 g</span>
-                        </span>
-                      </span>
+              <div class="col-12">
+                  <div class="dashboard-item-category">
+                      <span>Gateway: </span><span id="gw-addr" >[Gateway Address]</span>
                     </div>
-                </div>
-            </div>
+              </div>
           </div>
           <div class="row dashboard-row">
             <div class="col-md-6">
               <div class="dashboard-chart">
-                <div class="dashboard-item-category">Humidity Plot</div>
+                <div class="dashboard-item-category"><span>Humidity </span> - <span id="node-addr-humidity"></span></div>
+                <canvas id="myChart" width="400" height="300">Loading...</canvas>
               </div>
             </div>
             <div class="col-md-6">
               <div class="dashboard-chart">
-                  <div class="dashboard-item-category">Temperature Plot</div>
+                    <div class="dashboard-item-category"><span>Temperature </span> - <span id="node-addr-temperature"></span></div>
+                    <canvas id="chart-temperature" width="400" height="300">Loading...</canvas>
                 </div>
             </div>
             <div class="col-md-6">
               <div class="dashboard-chart">
-                  <div class="dashboard-item-category">Gyroscope Plot</div>
+                    <div class="dashboard-item-category"><span>Motion </span> - <span id="node-addr-motion"></span></div>
+                    <canvas id="chart-motion" width="400" height="300">Loading...</canvas>
                 </div>
             </div>
           </div>
@@ -145,32 +83,92 @@
         </div>
       </div>
       </div>
+      <script src="js/jquery.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script src="js/main.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/waziup-js@0.0.18/lib/Waziup.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
       <script>
-          var mymap = L.map('mapid').setView([-1.97, 30.1], 3);
-          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-             maxZoom: 18,
-             id: 'mapbox.streets',
-             accessToken: 'pk.eyJ1IjoiY2R1cG9udDIiLCJhIjoiY2pnZTVkZ2xsMGxyZTJ4cjA5dDZ4cjNneSJ9.NJT7CULfcY0mjeavffR_vg'
-          }).addTo(mymap);
-        
+          var gwAddr = "waziup-ISPACE-KITA";
+          var nodeAddr = "ISPACE_Sensor3";
+
+          $('#gw-addr').html(gwAddr);
         Waziup.ApiClient.instance.basePath = 'https://api.waziup.io/api/v1'
         var api = new Waziup.SensorsApi()
-        var markers = []
-        api.getSensors("waziup", {limit:1000}).then((sensors) =>{
-          console.log("data" + JSON.stringify(sensors))
-          for(sensor of sensors) {
-            if(sensor.location) {
-              L.marker([sensor.location.latitude, sensor.location.longitude]).addTo(mymap);
-            }
+        var data = []
+        var labels = []
+        api.getMeasurementValues(gwAddr, nodeAddr, "HM", {'lastN': "20"}).then((values) =>{
+          console.log("data" + JSON.stringify(values))
+          for(value of values) {
+            data.push(value.value)
+            console.log('time stamp', value.timestamp)
+            labels.push(value.timestamp)
           }
+          $('#node-addr-humidity').html(nodeAddr);
+          var ctx = document.getElementById("myChart").getContext('2d');
+          var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: 'Sensor values',
+                      data: data
+                  }]
+              },
+              options: {
+                  responsive: false
+              }
+          });
+        })
+
+        api.getMeasurementValues(gwAddr, nodeAddr, "TC", {'lastN': "20"}).then((values) =>{
+          console.log("data" + JSON.stringify(values))
+          for(value of values) {
+            data.push(value.value)
+            console.log('time stamp', value.timestamp)
+            labels.push(value.timestamp)
+          }
+        $('#node-addr-temperature').html(nodeAddr);
+          var ctx = document.getElementById("chart-temperature").getContext('2d');
+          var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: 'Sensor values',
+                      data: data
+                  }]
+              },
+              options: {
+                  responsive: false
+              }
+          });
+        })
+        api.getMeasurementValues(gwAddr, nodeAddr, "MS", {'lastN': "20"}).then((values) =>{
+          console.log("data" + JSON.stringify(values))
+          for(value of values) {
+            data.push(value.value)
+            console.log('time stamp', value.timestamp)
+            labels.push(value.timestamp)
+          }
+        $('#node-addr-motion').html(nodeAddr);
+          var ctx = document.getElementById("chart-motion").getContext('2d');
+          var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: 'Sensor values',
+                      data: data
+                  }]
+              },
+              options: {
+                  responsive: false
+              }
+          });
         })
       </script>
-    <script src="js/jquery.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/main.js"></script>
     </body>
     </html>
     
