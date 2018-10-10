@@ -99,7 +99,7 @@
                     <span class="dashboard-item-detail-content">
                       <span class="sensor">
                         <span class="sensor-type">Temp</span>
-                        <span class="sensor-value">26 C</span>
+                        <span class="sensor-value" id="sensor-value-temperature">- &deg;C</span>
                       </span>
                     </span>
                   </div>
@@ -108,7 +108,7 @@
                     <span class="dashboard-item-detail-content">
                       <span class="sensor">
                         <span class="sensor-type">Humidity</span>
-                        <span class="sensor-value">56</span>
+                        <span class="sensor-value" id="sensor-value-humidity">56</span>
                       </span>
                     </span>
                   </div>
@@ -116,8 +116,8 @@
                       <img class="dashboard-item-img" src="images/icons8-gyroscope-50.png"/>
                       <span class="dashboard-item-detail-content">
                         <span class="sensor">
-                          <span class="sensor-type">Vibration</span>
-                          <span class="sensor-value">0.2 g</span>
+                          <span class="sensor-type"></span>
+                          <span class="sensor-value" id="sensor-value-motion">0.2 g</span>
                         </span>
                       </span>
                     </div>
@@ -128,6 +128,7 @@
             <div class="col-md-6">
               <div class="dashboard-chart">
                 <div class="dashboard-item-category">Humidity Plot</div>
+                <div id="sensor_value"></div>
               </div>
             </div>
             <div class="col-md-6">
@@ -166,14 +167,39 @@
         var api = new Waziup.SensorsApi()
         var markers = []
         api.getSensors("waziup", {limit:1000}).then((sensors) =>{
-          console.log("data" + JSON.stringify(sensors))
+          //console.log("data" + JSON.stringify(sensors))
           for(sensor of sensors) {
             if(sensor.location) {
               L.marker([sensor.location.latitude, sensor.location.longitude]).addTo(mymap);
             }
           }
         })
+        
       </script>
+    <script src="https://cdn.jsdelivr.net/npm/waziup-js@0.0.18/lib/Waziup.js"></script>
+    <script>
+      function loopGetSensors(){
+        Waziup.ApiClient.instance.basePath = 'https://api.waziup.io/api/v1'
+        var api = new Waziup.SensorsApi()
+        api.getMeasurement("waziup", "ISPACE_Sensor3", "TC").then((meas) =>{
+          document.getElementById("sensor-value-temperature").innerHTML = meas.last_value + " &deg;C";
+
+          //console.log('looping..');
+          setTimeout('loopGetSensors()', 300);
+        });
+        api.getMeasurement("waziup", "ISPACE_Sensor3", "HM").then((meas) =>{
+          document.getElementById("sensor-value-humidity").innerHTML = meas.last_value + " %";
+        });
+        api.getMeasurement("waziup", "ISPACE_Sensor3", "MS").then((meas) =>{
+          if(meas.last_value === 1)
+          document.getElementById("sensor-value-motion").innerHTML = "Moving";
+          else
+          document.getElementById("sensor-value-motion").innerHTML = "Stoped moving";
+        });
+      }
+
+      loopGetSensors();
+    </script>
     <script src="js/jquery.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
