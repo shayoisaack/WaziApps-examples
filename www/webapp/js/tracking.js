@@ -53,9 +53,21 @@ function mockTrack() {
       [-6.8104,39.2861]
   ];
   //set source and destination
+  var truckMarker = L.AwesomeMarkers.icon({
+    icon: 'truck',
+    markerColor: 'green',
+    prefix: 'fa'
+  });
+
+  var redMarker = L.AwesomeMarkers.icon({
+    icon: 'circle',
+    markerColor: 'blue',
+    prefix: 'fa'
+  });
+
   var markers = Array();
-  markers[markers.length] = L.marker(latlangs[0]);
-  markers[markers.length] = L.marker(latlangs[latlangs.length - 1]);
+  markers[markers.length] = L.marker(latlangs[0], {icon: redMarker});
+  markers[markers.length] = L.marker(latlangs[latlangs.length - 1], {icon: redMarker});
   var featureGroup = L.featureGroup(markers).addTo(mymap);
 
   var geocodeService = L.esri.Geocoding.geocodeService();
@@ -74,19 +86,14 @@ function mockTrack() {
 
   //zoom into area
   mymap.fitBounds(featureGroup.getBounds(), { padding: [80, 80] });
-  
-  var redMarker = L.AwesomeMarkers.icon({
-    icon: 'truck',
-    markerColor: 'darkgreen',
-    prefix: 'fa'
-  });
+
 
   //draw path
   var color = "blue";
   for (let i = 0; i < latlangs.length - 1; i++) {
     if (i === 17) {
       color = "grey";
-      L.marker(latlangs[i], {icon: redMarker})
+      L.marker(latlangs[i], {icon: truckMarker})
         .addTo(mymap)
         .bindPopup("Isaack");
 

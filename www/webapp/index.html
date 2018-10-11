@@ -115,7 +115,7 @@
                     <span class="dashboard-item-detail-content">
                       <span class="sensor">
                         <span class="sensor-type">Humidity</span>
-                        <span class="sensor-value" id="sensor-value-humidity">56</span>
+                        <span class="sensor-value" id="sensor-value-humidity">56 %</span>
                       </span>
                     </span>
                   </div>
@@ -124,7 +124,7 @@
                       <span class="dashboard-item-detail-content">
                         <span class="sensor">
                           <span class="sensor-type"></span>
-                          <span class="sensor-value" id="sensor-value-motion">0.2 g</span>
+                          <span class="sensor-value" id="sensor-value-motion">Still</span>
                         </span>
                       </span>
                     </div>
@@ -208,7 +208,7 @@
           else
           document.getElementById("sensor-value-motion").innerHTML = "Still";
 
-            showError(meas.last_value, document.getElementById("sensor-value-motion"));
+          //showError(meas.last_value, document.getElementById("sensor-value-motion"));
         });
 
         function showError(condition, sensorHTML){
