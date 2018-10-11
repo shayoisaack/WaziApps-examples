@@ -4,6 +4,9 @@
       <link rel="stylesheet" href="css/bootstrap.css" />
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
       <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+      <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+      <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
       <link rel="stylesheet" href="css/main.css?a=4536449f"/>
     </head>
     <body>
@@ -156,6 +159,7 @@
       </div>
       </div>
       <script src="js/jquery.js"></script>
+      <script src="js/leaflet.awesome-markers.js"></script>
       <!-- Load Esri Leaflet from CDN -->
       <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
       integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
@@ -195,11 +199,12 @@
 
         api.getMeasurement("waziup", "ISPACE_Sensor3", "HM").then((meas) =>{
           document.getElementById("sensor-value-humidity").innerHTML = meas.last_value + " %";
+          showError(meas.last_value < 40, document.getElementById("sensor-value-humidity"));
         });
 
         api.getMeasurement("waziup", "ISPACE_Sensor3", "MS").then((meas) =>{
           if(meas.last_value === 1)
-          document.getElementById("sensor-value-motion").innerHTML = "Shaking";
+          document.getElementById("sensor-value-motion").innerHTML = "Movement";
           else
           document.getElementById("sensor-value-motion").innerHTML = "Still";
 

@@ -74,16 +74,22 @@ function mockTrack() {
 
   //zoom into area
   mymap.fitBounds(featureGroup.getBounds(), { padding: [80, 80] });
+  
+  var redMarker = L.AwesomeMarkers.icon({
+    icon: 'truck',
+    markerColor: 'darkgreen',
+    prefix: 'fa'
+  });
 
   //draw path
   var color = "blue";
   for (let i = 0; i < latlangs.length - 1; i++) {
     if (i === 17) {
       color = "grey";
-      L.marker(latlangs[i])
+      L.marker(latlangs[i], {icon: redMarker})
         .addTo(mymap)
-        .bindPopup("Isaack")
-        .openPopup();
+        .bindPopup("Isaack");
+
       geocodeService
         .reverse()
         .latlng(latlangs[i])
