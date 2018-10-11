@@ -230,3 +230,7 @@ a{
 .dashboard-minimize .minimize{
     display: inline;
 }
+
+.not-good{
+    display: none;
+}

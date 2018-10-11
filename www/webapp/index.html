@@ -96,7 +96,7 @@
             </div>
             <div class="col-md-4 col-6 dashboard-item">
                 <div class="dashboard-item-category">Sensors</div>
-                <div class="dashboard-item-title">All Good</div>
+                <div class="dashboard-item-title"><span class="good">All Good</span><span class="not-good">Out of bounds</span></div>
                 <div class="dashboard-item-details">
                   <div class="dashboard-item-detail">
                     <img class="dashboard-item-img" src="images/icons8-temperature-50.png"/>
@@ -155,6 +155,7 @@
         <img class="user-avatar" src="images/icons8-administrator-male-80.png"/>
       </div>
       </div>
+      <script src="js/jquery.js"></script>
       <!-- Load Esri Leaflet from CDN -->
       <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
       integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
@@ -172,29 +173,54 @@
 
     <script src="https://cdn.jsdelivr.net/npm/waziup-js@0.0.18/lib/Waziup.js"></script>
     <script>
+      var flag = false;
       function loopGetSensors(){
+        if(flag){
+          $('.not-good').show();
+          $('.good').hide();
+        }
+        else{
+          $('.not-good').hide();
+          $('.good').show();
+        }
         Waziup.ApiClient.instance.basePath = 'https://api.waziup.io/api/v1'
-        var api = new Waziup.SensorsApi()
+        var api = new Waziup.SensorsApi();
         api.getMeasurement("waziup", "ISPACE_Sensor3", "TC").then((meas) =>{
-          document.getElementById("sensor-value-temperature").innerHTML = meas.last_value + " &deg;C";
+          let sensorHTML = document.getElementById("sensor-value-temperature");
+          sensorHTML.innerHTML = meas.last_value + " &deg;C";
+          showError(meas.last_value < 20 || meas.last_value > 32, sensorHTML);
 
-          //console.log('looping..');
           setTimeout('loopGetSensors()', 300);
         });
+
         api.getMeasurement("waziup", "ISPACE_Sensor3", "HM").then((meas) =>{
           document.getElementById("sensor-value-humidity").innerHTML = meas.last_value + " %";
         });
+
         api.getMeasurement("waziup", "ISPACE_Sensor3", "MS").then((meas) =>{
           if(meas.last_value === 1)
-          document.getElementById("sensor-value-motion").innerHTML = "Moving";
+          document.getElementById("sensor-value-motion").innerHTML = "Shaking";
           else
-          document.getElementById("sensor-value-motion").innerHTML = "Stoped moving";
+          document.getElementById("sensor-value-motion").innerHTML = "Still";
+
+            showError(meas.last_value, document.getElementById("sensor-value-motion"));
         });
+
+        function showError(condition, sensorHTML){
+            if(condition){
+              $(sensorHTML).parents('.sensor').css('color', 'red');
+              $('.good').hide();
+              $('.not-good').show();
+              flag = true;
+            }
+            else{
+              $(sensorHTML).parents('.sensor').css('color', 'inherit');
+            }
+        }
       }
 
       loopGetSensors();
     </script>
-    <script src="js/jquery.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/main.js"></script>
